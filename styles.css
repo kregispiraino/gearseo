@@ -370,13 +370,15 @@ a {
 }
 
 .hero-metrics article::after {
-  content: "↗";
+  content: "";
   position: absolute;
-  top: 25px;
-  right: 27px;
-  color: var(--blue);
-  font-size: 14px;
-  font-weight: 900;
+  top: 29px;
+  right: 30px;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid var(--blue);
+  border-right: 3px solid var(--blue);
+  box-shadow: 4px 4px 0 -2px var(--blue);
 }
 
 .hero-metrics small {
@@ -994,7 +996,7 @@ a {
   border-radius: 26px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   background:
-    linear-gradient(150deg, rgba(255,255,255,.08), rgba(255,255,255,.025)),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
     radial-gradient(circle at 85% 12%, rgba(0, 173, 239, 0.14), transparent 36%);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.2);
 }
@@ -1167,8 +1169,8 @@ a {
   .floating-video-card {
     width: 126px;
     height: 158px;
-    right: 14px;
-    bottom: calc(86px + env(safe-area-inset-bottom));
+    right: 12px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
     padding: 6px;
     border-radius: 24px;
     z-index: 25;
@@ -1219,7 +1221,8 @@ a {
   }
 
   .floating-video-bubble {
-    bottom: calc(86px + env(safe-area-inset-bottom));
+    right: 12px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
   }
 
   .video-controls {
@@ -1363,8 +1366,8 @@ a {
   .floating-video-card {
     width: 104px;
     height: 132px;
-    right: 14px;
-    bottom: calc(86px + env(safe-area-inset-bottom));
+    right: 10px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
     border-radius: 22px;
   }
 
