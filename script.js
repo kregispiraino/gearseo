@@ -28,8 +28,10 @@ if (mobileNav) {
 
 function formatTime(seconds) {
   if (!Number.isFinite(seconds)) return '0:00';
+
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+
   return `${minutes}:${remainingSeconds}`;
 }
 
@@ -47,7 +49,8 @@ function updateVideoControls() {
   }
 
   if (playPauseButton) {
-    playPauseButton.textContent = floatingVideo.paused ? '▶' : '❚❚';
+    playPauseButton.textContent = '';
+    playPauseButton.classList.toggle('is-paused', floatingVideo.paused);
     playPauseButton.setAttribute('aria-label', floatingVideo.paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
   }
 }
@@ -94,7 +97,14 @@ function restorePresentation() {
 }
 
 floatingVideoCard?.addEventListener('click', (event) => {
-  if (event.target.closest('button') || event.target.closest('.video-controls') || floatingVideoCard.classList.contains('is-expanded')) return;
+  if (
+    event.target.closest('button') ||
+    event.target.closest('.video-controls') ||
+    floatingVideoCard.classList.contains('is-expanded')
+  ) {
+    return;
+  }
+
   expandPresentation();
 });
 
@@ -108,6 +118,7 @@ floatingBubble?.addEventListener('click', restorePresentation);
 
 playPauseButton?.addEventListener('click', (event) => {
   event.stopPropagation();
+
   if (!floatingVideo) return;
 
   if (floatingVideo.paused) {
@@ -115,15 +126,18 @@ playPauseButton?.addEventListener('click', (event) => {
   } else {
     floatingVideo.pause();
   }
+
   updateVideoControls();
 });
 
 progressInput?.addEventListener('input', (event) => {
   event.stopPropagation();
+
   if (!floatingVideo || !floatingVideo.duration) return;
 
   const percentage = Number(event.target.value) / 100;
   floatingVideo.currentTime = percentage * floatingVideo.duration;
+
   updateVideoControls();
 });
 
